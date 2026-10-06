@@ -1,17 +1,20 @@
 ---
-gsd_state_version: 1.0
+gsd_state_version: "1.0"
 milestone: v1.0
-milestone_name: milestone
+current_phase: 07
+current_phase_name: No-Container Demo Backend for Try It Out
 status: paused
-stopped_at: "Phase 7 fully complete and human-verified live against the real OpenAI API (07-05). Post-completion housekeeping done: repo pushed to a fork branch with an open PR (GPT-Laboratory/AI-Champion-Agent-Library#1), and this STATE.md/ROADMAP.md consistency pass. Next open item on the roadmap is Phase 2's unexecuted 02-04 checkpoint, or starting Phase 3/4 planning."
-last_updated: "2026-08-20T12:32:16.349Z"
-last_activity: 2026-08-20 — Phase 7 Plan 5 (`?job=` session persistence + live E2E verification) completed and human-approved
+stopped_at: Phase 8 context gathered
+last_updated: "2026-10-06T07:54:53.778Z"
+last_activity: 2026-08-20
+last_activity_desc: Phase 7 Plan 5 (`?job=` session persistence + live E2E verification) completed and human-approved
+state_head: 5e2f9098ce10d8e62fd0a3ac47c5dd2c5f0f0732
 progress:
-  total_phases: 7
+  total_phases: 8
   completed_phases: 4
   total_plans: 16
   completed_plans: 15
-  percent: 94
+milestone_name: milestone
 ---
 
 # Project State
@@ -148,10 +151,11 @@ None yet.
 - Phase 5 added: Try It Out Field — optional try_it_out mode (none|external|runnable) on agent records, threaded through schema/ingest/detail page
 - Phase 6 added: Runnable Try It Out Flow (mock-backed) — src/lib/tryItOut.ts (submitJob/subscribeProgress/downloadArtifact) + TryItOutPanel.svelte, shaped to docs/job-api-contract.md, no real backend
 - Phase 7 added: No-Container Demo Backend for Try It Out — real (but no-Docker/no-pi) SvelteKit server routes that call an LLM with the agent's base prompt + skill.md, replacing tryItOut.ts's mock with real fetch() calls; UI unchanged
+- Phase 8 added: Container-backed Try It Out (warm on visit) — when a user opens an agent page, warm a container with Pi and that agent's skill; Try It Out runs in it behind the existing job API. Inspired by GAISE26_tool_building_pi_agents (idea only, not code). Delegated by Jussi.
 - Phases 5, 6, and 7 together form one continuous "Try It Out" initiative, executed as a self-contained branch off Phase 2 — independent of, and completed ahead of, Phases 3 and 4.
 
 ## Session Continuity
 
-Last session: 2026-08-20T15:26:00.000Z
-Stopped at: Phase 7 fully complete and human-verified live against the real OpenAI API (07-05). Post-completion housekeeping done: repo pushed to a fork branch with an open PR (GPT-Laboratory/AI-Champion-Agent-Library#1), and this STATE.md/ROADMAP.md consistency pass. Next open item on the roadmap is Phase 2's unexecuted 02-04 checkpoint, or starting Phase 3/4 planning.
-Resume file: None — no `.continue-here*.md` exists; resume from this file's "Missing / Open Work" section.
+Last session: 2026-10-06T07:54:53.578Z
+Stopped at: Phase 8 context gathered
+Resume file: .planning/phases/08-container-backed-try-it-out-warm-on-visit/08-CONTEXT.md
