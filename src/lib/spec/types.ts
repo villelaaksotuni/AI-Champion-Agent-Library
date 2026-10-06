@@ -50,8 +50,12 @@ export interface AgentRecord {
   // Catalog metadata (consortium conventions in AgentSpec `metadata`)
   category: string | null
   githubUrl: string | null
+  linkLabel: string | null         // Text for the githubUrl link; UI falls back to "View on GitHub"
   maturityStatus: 'production' | 'beta' | 'experimental'
   tags: string[]
+  customizableFields: string[] | null  // Keys from TAILORABLE_FIELDS; null = all, [] = none
+  fixedNote: string | null             // Optional extra text under the fixed fields in the panel
+  fixedFields: string[]                // Keys from TAILORABLE_FIELDS shown with their value as not customizable
 
   // Pipeline metadata
   lastIngestedAt: string  // ISO-8601 timestamp; updated on every ingest run

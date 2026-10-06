@@ -83,6 +83,14 @@ function extractMetaArray(metadata: Record<string, unknown> | undefined, key: st
 }
 
 /**
+ * Like extractMetaArray, but distinguishes an absent key (null) from an empty list.
+ */
+function extractOptionalMetaArray(metadata: Record<string, unknown> | undefined, key: string): string[] | null {
+  if (!metadata || !Array.isArray(metadata[key])) return null
+  return extractMetaArray(metadata, key)
+}
+
+/**
  * Cast a raw maturity string to the AgentRecord maturityStatus union.
  * Falls back to 'experimental' for any unrecognized value.
  */
@@ -125,8 +133,12 @@ export function fromOracleAgentSpec(raw: OracleAgentSpec): AgentRecord {
     requiresHumanApproval: raw.human_in_the_loop ?? false,
     category: extractMeta(raw.metadata, 'category'),
     githubUrl: extractMeta(raw.metadata, 'github_url'),
+    linkLabel: extractMeta(raw.metadata, 'link_label'),
     maturityStatus: toMaturityStatus(extractMeta(raw.metadata, 'maturity')),
     tags: extractMetaArray(raw.metadata, 'tags'),
+    customizableFields: extractOptionalMetaArray(raw.metadata, 'customizable'),
+    fixedFields: extractMetaArray(raw.metadata, 'fixed'),
+    fixedNote: extractMeta(raw.metadata, 'fixed_note'),
     lastIngestedAt: new Date().toISOString(),
   }
 }

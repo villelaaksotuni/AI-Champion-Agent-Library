@@ -27,8 +27,12 @@ function flattenRecord(record: AgentRecord): NewAgentRow {
     requiresHumanApproval: record.requiresHumanApproval,
     category: record.category,
     githubUrl: record.githubUrl,
+    linkLabel: record.linkLabel,
     maturityStatus: record.maturityStatus,
     tags: JSON.stringify(record.tags),
+    customizableFields: record.customizableFields ? JSON.stringify(record.customizableFields) : null,
+    fixedFields: JSON.stringify(record.fixedFields),
+    fixedNote: record.fixedNote,
     specId: record.specId,
     // try_it_out_* mirror the drizzle/schema.ts column defaults and are
     // intentionally NOT read from AgentRecord (D-05/D-06) — try_it_out is
@@ -80,8 +84,12 @@ async function ingest(dataDir: string, dbPath: string): Promise<{ succeeded: num
             requiresHumanApproval: sql`excluded.requires_human_approval`,
             category: sql`excluded.category`,
             githubUrl: sql`excluded.github_url`,
+            linkLabel: sql`excluded.link_label`,
             maturityStatus: sql`excluded.maturity_status`,
             tags: sql`excluded.tags`,
+            customizableFields: sql`excluded.customizable_fields`,
+            fixedFields: sql`excluded.fixed_fields`,
+            fixedNote: sql`excluded.fixed_note`,
             specId: sql`excluded.spec_id`,
             // tryItOutMode / tryItOutUrl / tryItOutTaskTemplate are
             // deliberately OMITTED from this set block (D-07): try_it_out

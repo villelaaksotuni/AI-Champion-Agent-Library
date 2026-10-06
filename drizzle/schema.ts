@@ -17,8 +17,12 @@ export const agents = sqliteTable('agents', {
   requiresHumanApproval: integer('requires_human_approval', { mode: 'boolean' }).notNull().default(false),
   category:              text('category'),
   githubUrl:             text('github_url'),
+  linkLabel:             text('link_label'),
   maturityStatus:        text('maturity_status').notNull().default('experimental'),
   tags:                  text('tags').notNull().default('[]'),        // JSON-serialized string[]
+  customizableFields:    text('customizable_fields'),               // JSON-serialized string[]; null = all fields
+  fixedNote:             text('fixed_note'),
+  fixedFields:           text('fixed_fields').notNull().default('[]'), // JSON-serialized string[]
   specId:                text('spec_id'),
   tryItOutMode:          text('try_it_out_mode').notNull().default('none'),  // allowed values: none | external | runnable
   tryItOutUrl:           text('try_it_out_url'),

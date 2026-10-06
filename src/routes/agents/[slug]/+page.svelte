@@ -57,7 +57,7 @@
             rel="noopener noreferrer"
             class="inline-flex items-center gap-2 text-sm font-medium text-indigo-600 hover:underline"
           >
-            View on GitHub &rarr;
+            {agent.linkLabel ?? 'View on GitHub'} &rarr;
           </a>
         {/if}
 
@@ -104,6 +104,18 @@
 
   <!-- Right column: Customization panel (DETL-03) -->
   <div class="lg:sticky lg:top-8 self-start">
-    <CustomizationPanel />
+    {#if agent.customizableFields?.length !== 0 || agent.fixedFields.length > 0}
+      <CustomizationPanel
+        fields={agent.customizableFields}
+        fixed={agent.fixedFields}
+        fixedNote={agent.fixedNote}
+        values={{
+          'llm.name': agent.llmName,
+          'llm.temperature': agent.llmTemperature === null ? 'Default' : String(agent.llmTemperature),
+          systemPrompt: agent.systemPrompt,
+          tools: agent.toolNames.join(', '),
+        }}
+      />
+    {/if}
   </div>
 </div>

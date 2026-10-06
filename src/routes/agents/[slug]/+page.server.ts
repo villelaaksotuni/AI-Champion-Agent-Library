@@ -22,6 +22,8 @@ export const load: PageServerLoad = async ({ params, url }) => {
       toolNames: JSON.parse(row.toolNames) as string[],
       inputFields: JSON.parse(inputSchema ?? '[]'),
       tags: JSON.parse(row.tags) as string[],
+      fixedFields: JSON.parse(row.fixedFields ?? '[]') as string[],
+      customizableFields: row.customizableFields ? (JSON.parse(row.customizableFields) as string[]) : null,
     },
     openTryOut: url?.searchParams.get('tryout') === '1',
   }
