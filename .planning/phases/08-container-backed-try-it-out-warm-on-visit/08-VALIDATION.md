@@ -61,13 +61,13 @@ Filled by the planner (2026-10-08). Plan-task IDs refer to `08-NN-PLAN.md` Task 
 | 08-07 T1 (tracer) | 3 | D-05/D-06/D-10 | Runnable page load warms without awaiting; cookie set; non-runnable never warms | unit | `npx vitest run src/routes/agents/warm.test.ts src/routes/agents/detail.test.ts` | created in task | pending |
 | 08-07 T2 | 3 | D-05 | init hook starts the service; import does not | unit | `npx vitest run src/hooks.server.test.ts src/routes/agents/warm.test.ts` | update existing | pending |
 | 08-08 T1 (tracer) | 4 | D-02/D-20 | Image pinned/offline env; smoke script compiles and fails cleanly without an engine | script | `npx tsc --noEmit && npx tsx scripts/smoke-pi-runner.ts --help` (+ nonexistent-socket exit 1) | created in task | pending |
-| 08-08 T2 | 4 | D-01/D-19 | Compose/env/docs; full suite; build; client bundle has no OPENAI_API_KEY or dockerode | gate | `npm test; npx tsc --noEmit && npm run build && ! grep -rq "OPENAI_API_KEY" build/client/ && ! grep -rq "dockerode" build/client/` | n/a | pending |
+| 08-08 T2 | 4 | D-01/D-19 | Compose/env/docs; full suite; build; client bundle has no OPENAI_API_KEY or dockerode | gate | `npx vitest run --exclude scripts/set-try-it-out-mode.test.ts` (hard gate) && baseline file run with `--reporter=json` asserted to have exactly 3 failed tests && `npx tsc --noEmit && npm run build && ! grep -rq "OPENAI_API_KEY" build/client/ && ! grep -rq "dockerode" build/client/` (full command in 08-08-PLAN.md Task 2) | n/a | pending |
 | 08-08 T3 | 4 | D-01/D-03/D-19/D-20/D-21 (live) | Socket, internal DNS, egress blocked, Pi offline, fs mode, limits, timeout kill, warm on visit, zip, fallback, TTL cleanup, orphan cleanup | live smoke (manual checkpoint) | `npx tsx scripts/smoke-pi-runner.ts` on a Podman host | created in 08-08 T1 | pending |
 
 *Status: pending · green · red · flaky*
 
 Notes:
-- `npm test` baseline: 3 pre-existing failures in `scripts/set-try-it-out-mode.test.ts`; full-suite commands accept exactly those.
+- `npm test` baseline: 3 pre-existing failures in `scripts/set-try-it-out-mode.test.ts`; full-suite commands accept exactly those. The 08-08 gate enforces this mechanically: it runs the suite with that file excluded as a hard gate, then runs that file alone and fails unless the JSON reporter shows exactly 3 failed tests.
 - The warm-trigger test lives at `src/routes/agents/warm.test.ts` (not inside `[slug]/`) to avoid bracket globbing in vitest filters.
 - Wave 0 items are created inside the first tasks of wave-1 plans (fake runtime in 08-01 T1, Pi fixtures in 08-02 T1); every task has an automated command, so no MISSING sentinels are needed.
 
