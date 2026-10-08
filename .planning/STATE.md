@@ -1,18 +1,18 @@
 ---
 gsd_state_version: "1.0"
 milestone: v1.0
-current_phase: 07
-current_phase_name: No-Container Demo Backend for Try It Out
+current_phase: 08
+current_phase_name: container-backed-try-it-out-warm-on-visit
 status: paused
 stopped_at: Phase 8 context gathered
-last_updated: "2026-10-06T07:54:53.778Z"
+last_updated: "2026-10-08T05:32:38.513Z"
 last_activity: 2026-08-20
 last_activity_desc: Phase 7 Plan 5 (`?job=` session persistence + live E2E verification) completed and human-approved
-state_head: 5e2f9098ce10d8e62fd0a3ac47c5dd2c5f0f0732
+state_head: 2f17e65014d130fcb8b914dcb004a459d8ac0c46
 progress:
   total_phases: 8
   completed_phases: 4
-  total_plans: 16
+  total_plans: 24
   completed_plans: 15
 milestone_name: milestone
 ---
@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-19)
 
 ## Current Position
 
-Phase: 07 of 7 (No-Container Demo Backend for Try It Out) — COMPLETE (verified 2026-08-20, 9/9 success criteria)
+Phase: 08 (container-backed-try-it-out-warm-on-visit) — READY TO EXECUTE
 Plan: 5 of 5 in Phase 7
 Status: Paused — all assigned plans across Phases 1, 5, 6, 7 complete. Phase 2 has an unexecuted checkpoint (02-04-PLAN.md); Phases 3/4 not started.
 Last activity: 2026-08-20 — Phase 7 Plan 5 (`?job=` session persistence + live E2E verification) completed and human-approved
